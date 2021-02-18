@@ -1,0 +1,22 @@
+[
+  {
+    "label": "解锁坐标数组 或  数字密码",
+    "name": "密码",
+    "validation": "required"
+  },
+  {
+    "label": "上报人姓名",
+    "name": "姓名",
+    "validation": "required"
+  },
+  {
+    "label": "选择器",
+    "type": "select",
+    "name": "phonelock",
+    "options": {
+      "a": "图形锁",
+      "b": "数字密码锁"
+    },
+    "validation": "required"
+  }
+]
