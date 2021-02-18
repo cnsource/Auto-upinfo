@@ -7,7 +7,14 @@ Hamibot自动化脚本，支持息屏解锁，定时，自定义夜间上报，�
   2. 图形密码
      九宫格解锁密码，需要打开手机的开发者模式->指针位置，在解锁界面记录解锁点位轨迹坐标
      .<div align=left><img src="https://github.com/cnsource/Auto-upinfo/blob/main/readme.pic/%E4%B9%9D%E5%AE%AB%E6%A0%BC%E9%94%81.png" width="500" height="350" /></div>
-      
+      将坐标按顺序整理成如下格式填入脚本配置中
+      200,300-400,600-400,900,600,600
   3. 上报人
-  4. 自动上报
-  5. 邮件反馈
+
+     用来判断是否已经上报，不搜集个人隐私
+  6. 自动上报
+
+     在Hamibot中安装[自动报平安脚本](https://hamibot.com/marketplace/4wuKb)，配置定时任务
+  8. 邮件反馈
+
+     平安上报后会将上报结果发送给用户邮箱
