@@ -1,19 +1,23 @@
 auto.waitFor();
 device.wakeUpIfNeeded()
+var dwc = device.width/2;
+var dhc = device.height/2;
+var dw = device.width;
+var dh = device.height;
 const {gest} = hamibot.env;
-setScreenMetrics(1080, 2400);
+
 sleep(2000)
 if(gest=="up"){
-     gesture(100, [300, 1200], [300, 200])
+   gesture(100, [dwc, dh/10*9], [dwc, dh/10])
 }
 if(gest=="down"){
-     gesture(100, [300, 200], [300, 1200])
+   gesture(100, [dwc, dh/10], [dwc, dh/10*9])
 }
 if(gest=="right"){
-     gesture(100, [100, 800], [800, 800])
+   gesture(100, [dw/8, dhc], [dw/8*7, dhc])
 }
 if(gest=="left"){
-     gesture(100, [800, 800], [100, 800])
+   gesture(100, [dw/8*7, dhc], [dw/8, dhc])
 }//唤醒设备后上滑进入解锁界面
 
 //滑动解锁屏幕
@@ -34,7 +38,7 @@ if(phonelock=="a"){
       pwd.push(dot)
   }//解析坐标构造解锁坐标数组
   sleep(800)
-    gesture(1500, pwd)
+  gesture(1500, pwd)
 }
 
 launchApp("校园集结号")
@@ -94,8 +98,10 @@ while (!tag) {//没有上报则继续下边的操作
         toast("定位成功")
         console.hide()
         sleep(500)
-        click(500, 1150);
-        swipe(90, 1758, 120, 1758, 500)
+        var kh = text("当天实测体温").findOne().parent().child(1)
+        kh.click()
+        var seekbar = text("slider between 0 and 100").findOne().bounds()
+        swipe(seekbar.left, seekbar.centerY(), seekbar.left + 35, seekbar.centerY(), 500)
         w.click();
         break
     } else {
