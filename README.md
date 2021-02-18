@@ -12,7 +12,7 @@ Hamibot自动化脚本，支持息屏解锁，定时，自定义夜间上报，�
 
       200,300-400,600-400,900-600,600
 
-      (x坐标,y坐标)
+      (x坐标,y坐标)-(x坐标,y坐标)
  ![](https://github.com/cnsource/Auto-upinfo/blob/main/readme.pic/config.png)
   3. 上报人
 
