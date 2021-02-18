@@ -1,5 +1,18 @@
 [
   {
+    "label": "解锁手势",
+    "type": "select",
+    "name": "gest",
+    "options": {
+      "no": "无",
+      "up": "上滑",
+      "down": "下滑",
+      "left": "左滑",
+      "right": "右滑"
+    },
+    "validation": "required"
+  },
+  {
     "label": "解锁坐标数组 或  数字密码",
     "name": "密码",
     "validation": "required"
@@ -15,7 +28,7 @@
     "name": "phonelock",
     "options": {
       "a": "图形锁",
-      "b": "数字密码锁"
+      "b": "无锁"
     },
     "validation": "required"
   }

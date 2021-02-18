@@ -1,26 +1,42 @@
 auto.waitFor();
 device.wakeUpIfNeeded()
-const {密码} = hamibot.env;
-const {phonelock} = hamibot.env;
-const {姓名} = hamibot.env;
-var arr = 密码.split("-")
-var pwd = []
-
-
-for (var i = 0; i < arr.length; i++) {
-    var temp = arr[i].split(",")
-    var x = Number(temp[0])
-    var y = Number(temp[1])
-    var dot = []
-    dot[0] = x
-    dot[1] = y
-    pwd.push(dot)
-}//解析坐标构造解锁坐标数组
-
+const {gest} = hamibot.env;
+setScreenMetrics(1080, 2400);
 sleep(2000)
-gesture(100, [300, 1600], [300, 500])//唤醒设备后上滑进入解锁界面
-sleep(800)
-gesture(1500, pwd)//滑动解锁屏幕
+if(gest=="up"){
+     gesture(100, [300, 1200], [300, 200])
+}
+if(gest=="down"){
+     gesture(100, [300, 200], [300, 1200])
+}
+if(gest=="right"){
+     gesture(100, [100, 800], [800, 800])
+}
+if(gest=="left"){
+     gesture(100, [800, 800], [100, 800])
+}//唤醒设备后上滑进入解锁界面
+
+//滑动解锁屏幕
+const {phonelock} = hamibot.env;
+if(phonelock=="a"){
+  const {密码} = hamibot.env;
+  const {姓名} = hamibot.env;
+  var arr = 密码.split("-")
+  var pwd = []
+
+  for (var i = 0; i < arr.length; i++) {
+      var temp = arr[i].split(",")
+      var x = Number(temp[0])
+      var y = Number(temp[1])
+      var dot = []
+      dot[0] = x
+      dot[1] = y
+      pwd.push(dot)
+  }//解析坐标构造解锁坐标数组
+  sleep(800)
+    gesture(1500, pwd)
+}
+
 launchApp("校园集结号")
 while (true) {
     var ca = currentActivity()
