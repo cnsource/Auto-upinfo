@@ -17,7 +17,7 @@ Hamibot自动化脚本，支持息屏解锁，定时，自定义夜间上报，�
      用来判断是否已经上报，不搜集个人隐私
   6. 自动上报
 
-     在Hamibot中安装[自动报平安脚本](https://hamibot.com/marketplace/4wuKb)，配置定时任务
+     在Hamibot中安装[自动报平安脚本](https://hamibot.com/marketplace/4wuKb)，配置[定时任务](https://hamibot.com/dashboard/tasks)
   8. 邮件反馈
 
      平安上报后会将上报结果发送给用户邮箱(没做)
