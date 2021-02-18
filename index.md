@@ -1,37 +1,22 @@
-## Welcome to GitHub Pages
+# 校园集结号自动报平安
+Hamibot自动化脚本，支持息屏解锁，定时，自定义夜间上报，你只管碎觉，上报交给脚本
 
-You can use the [editor on GitHub](https://github.com/cnsource/Auto-upinfo/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## 配置
+  1. 解锁手势
+     解锁手势即手机息屏状态，点亮后打开图形锁的手势，例如Redmi k30 utral 需要上滑进入图形解锁界面，有的手机也有可能是右划，左滑。选择相应的选项即可
+  2. 图形密码
+     九宫格解锁密码，需要打开手机的开发者模式->指针位置，在解锁界面记录解锁点位轨迹坐标
+     .<div align=left><img src="https://github.com/cnsource/Auto-upinfo/blob/main/readme.pic/%E4%B9%9D%E5%AE%AB%E6%A0%BC%E9%94%81.png" width="500" height="350" /></div>
+      将坐标按顺序整理成如下格式填入脚本配置中
+      200,300-400,600-400,900,600,600
+  3. 上报人
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+     用来判断是否已经上报，不搜集个人隐私
+  6. 自动上报
 
-### Markdown
+     在Hamibot中安装[自动报平安脚本](https://hamibot.com/marketplace/4wuKb)，配置定时任务
+  8. 邮件反馈
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+     平安上报后会将上报结果发送给用户邮箱
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/cnsource/Auto-upinfo/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
