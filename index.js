@@ -70,7 +70,7 @@ while (true) {
     }
 }
 sleep(800)
-var us = text("我要报平安").findOne()
+
 var list = className("android.widget.ListView").findOnce(0)
 var a = list.child(1)
 a.click()
@@ -86,28 +86,35 @@ text("已上报学生").findOne().parent().parent().children()
         }
     });//重已上报名单里查找本人
 if(!tag){
+  console.show()
   text("x").findOne().click()
-  
-}
-while (!tag) {//没有上报则继续下边的操作
-    us.click()
-    var w = text("确定").findOne(600);
-    //如果找到控件则点击
-    if (w != null) {
-        sleep(500)
-        toast("定位成功")
-        console.hide()
-        sleep(500)
-        var kh = text("当天实测体温").findOne().parent().child(1)
-        kh.click()
-        var seekbar = text("slider between 0 and 100").findOne().bounds()
-        swipe(seekbar.left, seekbar.centerY(), seekbar.left + 35, seekbar.centerY(), 500)
-        w.click();
-        break
-    } else {
-        toast("定位中...")
-    }
+  sleep(500)
+  while(text("确定").findOne(1000)==null){
+       console.log("定位...")
+       text("我要报平安").findOne().click()
+  }
+  sleep(1000)
+  function tiwen(){
+    console.show()
+    var kh = text("当天实测体温").findOne().parent().child(1)
+    kh.click()
     sleep(1000)
+    var seekbar = text("slider between 0 and 100").findOne().bounds()
+    console.log(seekbar)
+    const end = seekbar.right/10+seekbar.left
+    const start = seekbar.left
+    const cen = seekbar.centerY()
+    console.log(start+"-"+cen+"-"+end)
+    console.log("top"+seekbar.top)
+    console.log("bottom"+seekbar.bottom)
+    swipe(start,cen,end,cen,300) 
+    text("确定").findOne().click()
+    console.hide()
+  }
+    console.hide()
+    engines.execScript("tiwen", "tiwen();\n" + tiwen.toString());
+    
 }
+
 console.show()
 console.log(姓名 + "今日已上报平安")
