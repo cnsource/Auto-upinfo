@@ -8,6 +8,7 @@ const {gest} = hamibot.env;
 
 sleep(2000)
 if(gest=="up"){
+   toast("上滑解锁")
    gesture(100, [dwc, dh/10*9], [dwc, dh/10])
 }
 if(gest=="down"){
@@ -40,19 +41,26 @@ if(phonelock=="a"){
   sleep(800)
   gesture(1500, pwd)
 }
-
+console.show()
+console.log("启动校园集结号")
 launchApp("校园集结号")
-while (true) {
-    var ca = currentActivity()
-    if (ca != "com.zjelite.antlinkercampus.home.MainActivity") {
-        toast("启动...")
-        sleep(1000)
-    } else {
-        break
-    }
-}
-toast("启动成功")
 
+while(true){
+  if(id("com.zjelite.antlinkercampus:id/iv_adContent").findOne(200)!=null){
+    id("com.zjelite.antlinkercampus:id/iv_closePopup").findOne().click() 
+    break
+  }else{
+    if(text("校园").findOne(800)!=null) {
+      break
+    } else {
+      print(".")
+    }
+  }
+  sleep(500)
+}
+console.log("启动成功")
+sleep(800)
+console.hide()
 while (true) {
     var widght = className("android.widget.RelativeLayout").depth(14).findOne();
 
@@ -70,10 +78,9 @@ while (true) {
     }
 }
 sleep(800)
-
-var list = className("android.widget.ListView").findOnce(0)
-var a = list.child(1)
-a.click()
+var v = text("已上报").findOne();
+var peop = v.parent().parent().child(1).child(1)
+peop.click()
 sleep(1000)
 var tag = false//判断是否上报平安
 text("已上报学生").findOne().parent().parent().children()
@@ -81,7 +88,6 @@ text("已上报学生").findOne().parent().parent().children()
         var self = child.findOne(textContains(姓名))
         if (self != null) {
             tag = true//找到本人则上报成功
-            text("x").findOne().click()
             return;
         }
     });//重已上报名单里查找本人
@@ -96,24 +102,27 @@ if(!tag){
   sleep(1000)
   function tiwen(){
     console.show()
+    console.log("选择口号")
     var kh = text("当天实测体温").findOne().parent().child(1)
     kh.click()
     sleep(1000)
     var seekbar = text("slider between 0 and 100").findOne().bounds()
-    console.log(seekbar)
+    console.log("滑动体温")
     const end = seekbar.right/10+seekbar.left
     const start = seekbar.left
     const cen = seekbar.centerY()
     console.log(start+"-"+cen+"-"+end)
-    console.log("top"+seekbar.top)
-    console.log("bottom"+seekbar.bottom)
     swipe(start,cen,end,cen,300) 
     text("确定").findOne().click()
-    console.hide()
+    console.log("上报成功")
+    sleep(1000)
+    var v = text("已上报").findOne();
+    var peop = v.parent().parent().child(1).child(1)
+    peop.click()
   }
     console.hide()
     engines.execScript("tiwen", "tiwen();\n" + tiwen.toString());
-    
+
 }
 
 console.show()
