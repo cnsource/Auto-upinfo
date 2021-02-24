@@ -44,18 +44,32 @@ if(phonelock=="a"){
 console.show()
 console.log("启动校园集结号")
 launchApp("校园集结号")
+var ad = id("com.zjelite.antlinkercampus:id/iv_closePopup").findOne()
+function closeAD(){
+ ad.click() 
+ console.log("关闭广告")
+}
+function checkAD(){
+  console.log("检测广告")
+  if(id("com.zjelite.antlinkercampus:id/iv_adContent").findOne(100)!=null&&id("com.zjelite.antlinkercampus:id/iv_closePopup").findOne(100))
+    return true
+  else
+    return false
+}
 
 while(true){
-  if(id("com.zjelite.antlinkercampus:id/iv_adContent").findOne(200)!=null){
-    id("com.zjelite.antlinkercampus:id/iv_closePopup").findOne().click() 
-    break
-  }else{
     if(text("校园").findOne(800)!=null) {
       break
     } else {
       print(".")
     }
-  }
+    
+    if (checkAD()){
+      console.log("检测到广告")
+      closeAD() 
+    }else{
+      console.log("未发现广告")
+    }
   sleep(500)
 }
 console.log("启动成功")
