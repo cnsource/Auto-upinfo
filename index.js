@@ -45,6 +45,7 @@ console.show()
 console.log("启动校园集结号")
 launchApp("校园集结号")
 var ad = id("com.zjelite.antlinkercampus:id/iv_closePopup").findOne()
+
 function closeAD(){
  ad.click() 
  console.log("关闭广告")
@@ -56,7 +57,32 @@ function checkAD(){
   else
     return false
 }
-
+const {email} = hamibot.env
+function sendEmail(email,etitle,emsg){
+    http.get("http://liuxingw.com/api/mail/api.php?address="+email+"&name="+etitle+"&certno="+emsg, {}, function(res, err) {
+      if (err) {
+        console.error("反馈邮件发送失败");
+        return;
+      }
+      log("平安上报结果已发送到您的邮箱");
+    });
+}
+function checkUpStatus(){
+    var tag = false
+    var v = text("已上报").findOne();
+    var peop = v.parent().parent().child(1).child(1)
+    peop.click()
+    sleep(1000)
+    text("已上报学生").findOne().parent().parent().children()
+    .forEach(function (child) {
+        var self = child.findOne(textContains(姓名))
+        if (self != null) {
+            tag = true//找到本人则上报成功
+            return;
+        }
+    }); 
+  return tag
+}
 while(true){
     if(text("校园").findOne(800)!=null) {
       break
@@ -92,19 +118,7 @@ while (true) {
     }
 }
 sleep(800)
-var v = text("已上报").findOne();
-var peop = v.parent().parent().child(1).child(1)
-peop.click()
-sleep(1000)
-var tag = false//判断是否上报平安
-text("已上报学生").findOne().parent().parent().children()
-    .forEach(function (child) {
-        var self = child.findOne(textContains(姓名))
-        if (self != null) {
-            tag = true//找到本人则上报成功
-            return;
-        }
-    });//重已上报名单里查找本人
+var tag = checkUpStatus()
 if(!tag){
   console.show()
   text("x").findOne().click()
@@ -129,14 +143,21 @@ if(!tag){
     swipe(start,cen,end,cen,300) 
     text("确定").findOne().click()
     console.log("上报成功")
-    sleep(1000)
-    var v = text("已上报").findOne();
-    var peop = v.parent().parent().child(1).child(1)
-    peop.click()
   }
     console.hide()
     engines.execScript("tiwen", "tiwen();\n" + tiwen.toString());
-
+    sleep(1000)
+    while(engines.all().length>1){
+      sleep(200)
+    }
+    sleep(1000)
+    if(checkUpStatus()){
+        sendEmail(email,"成功平安上报回执","Youber已帮您完成平安上报")
+    }else{
+        sendEmail(email,"失败平安上报回执","上报结果检测失败，请您主动查看校园集结号上报状态")
+    }
+}else{
+    sendEmail(email,"成功平安上报回执","您今日已上报平安，无需再次上报") 
 }
 
 console.show()
